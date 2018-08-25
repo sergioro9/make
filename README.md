@@ -7,3 +7,4 @@ source:
     http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html#Autotools-Introduction
 # make
 # make
+# make
