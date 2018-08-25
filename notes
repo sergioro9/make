@@ -1,0 +1,34 @@
+Instead of writing the configure script by hand, we need to create a
+configure.ac file written in m4sh—a combination of m4 macros and POSIX
+shell script—to describe what the configure script needs to do.
+
+generates m4 enviroment for autotools to use:
+    aclocal
+
+translate configure.ac into configure:
+    autoconf
+
+translate Makefile.am into Makefile.in:
+    automake
+
+The Makefile contains all kinds of interesting targets, including one to
+build a tarball of the project containing all of the files we need to
+distribute:
+    ./configure
+    make dist
+
+You can even test that the distribution tarball can be installed under a
+variety of conditions:
+    make distcheck
+
+To summarize, on the maintainer's system:
+    aclocal # Set up an m4 environment
+    autoconf # Generate configure from configure.ac
+    automake --add-missing # Generate Makefile.in from Makefile.am
+    ./configure # Generate Makefile from Makefile.in
+    make distcheck # Use Makefile to build and test a tarball to distribute
+
+On the end-user's system:
+    ./configure # Generate Makefile from Makefile.in
+    make # Use Makefile to build the program
+    make install # Use Makefile to install the program
